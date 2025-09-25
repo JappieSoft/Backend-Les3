@@ -12,7 +12,8 @@ In deze opdracht gaan we opnieuw shoppen bij een supermarkt.
 Maar deze keer maken we het meer interactief en meer effectief.
 Om dat voor elkaar te krijgen, gaan we de `SuperMarket`-klasse, de `Main`-klasse en de `Customer`-klasse aanpassen op bepaalde punten.
 
-We laten de `Product` klasse met rust, maar alle instances van Pruduct komen in lijsten te staan. Zowel in Main als in SuperMarket en ook in de constructor. Een enkel Product kan soms nog wel als parameter van een methode worden gebruikt.
+We laten de `Product` klasse met rust, maar alle instances van Pruduct komen in lijsten te staan. Zowel in Main als in SuperMarket en ook in de constructor. 
+Een enkel Product kan soms nog wel als parameter van een methode worden gebruikt.
 
 Van `SuperMarket` gaan we 3 instances maken en die zetten we in een Map.  
 

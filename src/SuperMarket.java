@@ -1,15 +1,14 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class SuperMarket {
-    Product bread;
-    Product fruit;
-    Product cheese;
-    Product toiletPaper;
+    List<Product> products;
+    String superMarketName;
 
 
-    public SuperMarket(Product bread, Product fruit, Product cheese, Product toiletPaper) {
-        this.bread = bread;
-        this.cheese = cheese;
-        this.fruit  = fruit;
-        this.toiletPaper = toiletPaper;
+    public SuperMarket(List<Product> products, String superMarketName) {
+        this.products = products;
+        this.superMarketName = superMarketName;
     }
 
     private void buyItem(Product product, int orderAmount) {
