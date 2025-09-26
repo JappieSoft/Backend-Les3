@@ -31,22 +31,94 @@ public class Main {
         supermarkets.put("groente boer", new SuperMarket(groenteVoorraad, "groente boer"));
         supermarkets.put("kaas boer", new SuperMarket(kaasVoorraad, "kaas boer"));
 
-        System.out.println(supermarkets.get("groente boer"));
 
-
-        SuperMarket superMarket = new SuperMarket(broodVoorraad, "SupermarketName");
+        /*SuperMarket superMarket = new SuperMarket(broodVoorraad, "SupermarketName");*/
         Customer customer = new Customer();
         Scanner scanner = new Scanner(System.in);
+        boolean whileActive = true;
 
-        System.out.println("Wat wilt u vandaag kopen?");
-        String productName = scanner.nextLine().trim().toLowerCase();
+        while (whileActive) {
 
-        System.out.println("Hoeveel wilt u er kopen?");
-        int amount = scanner.nextInt();
-        scanner.nextLine();
+            System.out.println("\nWat wil u doen?\n");
+            System.out.println("1 - Selecteer een winkel");
+            System.out.println("2 - Koop een product");
+            System.out.println("3 - Voorraad van een product aanvullen");
+            System.out.println("4 - Stop");
+            int choice = scanner.nextInt();
+            scanner.nextLine();
 
-        customer.goToSuperMarket(superMarket);
-        customer.buyItem(productName, amount);
+            //choice 1
+            switch (choice) {
+                case (1): {
+                    System.out.println("Bij welke winkel wilt u uw inkopen doen?");
+                    System.out.println("Kies een van de onderstaande:");
+
+                    for (int i = 0; i < supermarkets.size(); i++) {
+                        SuperMarket supermarket = supermarkets.get(supermarkets.keySet().toArray()[i]);
+                        System.out.println(i + " - " + supermarket.superMarketName);
+                    }
+                    int superMarketChoice = scanner.nextInt();
+                    scanner.nextLine();
+
+                    SuperMarket supermarket = supermarkets.get(supermarkets.keySet().toArray()[superMarketChoice]);
+                    customer.goToSuperMarket(supermarket);
+                    break;
+                }
+
+                //choice 2
+                case (2): {
+                    if (customer.superMarket == null) {
+                        System.out.println("Kies eerst een winkel.");
+                        break;
+                    }
+                    System.out.println("Welk product komt u kopen bij de " + customer.superMarket.superMarketName + " ?");
+                    for (int i = 0; i < customer.superMarket.products.size(); i++) {
+                        Product product = customer.superMarket.products.get(i);
+                        System.out.println(product.name);
+                    }
+                    String productName = scanner.nextLine().trim().toLowerCase();
+                    System.out.println("Hoeveel komt u er kopen?");
+                    int amount = scanner.nextInt();
+                    scanner.nextLine();
+
+                    customer.buyItem(productName, amount);
+                    break;
+                }
+
+                //choice 3
+                case (3): {
+                    if (customer.superMarket == null) {
+                        System.out.println("Kies eerst een winkel.");
+                        break;
+                    }
+                    System.out.println("Welk product komt u aanvullen bij de " + customer.superMarket.superMarketName + " ?");
+                    for (int i = 0; i < customer.superMarket.products.size(); i++) {
+                        Product product = customer.superMarket.products.get(i);
+                        System.out.println(product.name);
+                    }
+                    String productName = scanner.nextLine().trim().toLowerCase();
+                    System.out.println("Hoeveel komt u er aanvullen?");
+                    int amount = scanner.nextInt();
+                    scanner.nextLine();
+
+                    customer.superMarket.restockItem(productName, amount);
+                    break;
+                }
+                //choice 4
+                case (4): {
+                    System.out.println("Thanks voor shopping!");
+                    whileActive = false;
+                    break;
+                }
+                default: {
+                    System.out.println("Verkeerde invoer!");
+                    break;
+                }
+
+            }
+
+        }
     }
-
 }
+
+
